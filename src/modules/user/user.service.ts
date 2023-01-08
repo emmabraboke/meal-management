@@ -3,9 +3,11 @@ import {
   Injectable,
   BadRequestException,
   UnauthorizedException,
+  HttpStatus,
 } from '@nestjs/common';
 import { ModelClass } from 'objection';
 import { SecurityUtilService } from 'src/services/securityUtil.service';
+import { ResponseModel } from 'src/utils/response.model';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { LoginDto } from './dtos/login.dto';
 import { User } from './entities/user.entity';
@@ -17,7 +19,9 @@ export class UserService {
     private securityUtilService: SecurityUtilService,
   ) {}
 
-  async createUser(createAccountDto: CreateUserDto): Promise<User> {
+  async createUser(
+    createAccountDto: CreateUserDto,
+  ): Promise<ResponseModel<User>> {
     const encryptedPassword = await this.securityUtilService.encryptPassword(
       createAccountDto.password,
     );
@@ -32,10 +36,14 @@ export class UserService {
 
     const user = await this.userRepository.query().insert(createAccountDto);
 
-    return user;
+    return new ResponseModel(
+      HttpStatus.CREATED,
+      'successfully created user',
+      user,
+    );
   }
 
-  async login(loginDto: LoginDto): Promise<User> {
+  async login(loginDto: LoginDto): Promise<ResponseModel<User>> {
     const user = await this.findUserByEmail(loginDto.email);
 
     if (!user) {
@@ -55,7 +63,11 @@ export class UserService {
 
     await user.$query().patch();
 
-    return user;
+    return new ResponseModel(
+      HttpStatus.CREATED,
+      'successfully created user',
+      user,
+    );
   }
 
   async findUserById(id: string) {

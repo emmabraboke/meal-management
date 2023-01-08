@@ -5,7 +5,9 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { ModelClass } from 'objection';
+import { ModelClass, Page } from 'objection';
+import { PageDto } from 'src/dtos/pagination/page.dto';
+import { PageMetaDTO } from 'src/dtos/pagination/pageMeta.dto';
 import { ResponseModel } from 'src/utils/response.model';
 import { CreateAddonDto } from './dtos/createAddon.dto';
 import { CreateAddonCategoryDto } from './dtos/createAddonCategory.dto';
@@ -38,19 +40,30 @@ export class AddonsService {
 
   async findMealAddonsByBrandId(
     brandId: string,
+    pageDto: PageDto,
   ): Promise<ResponseModel<Addon[]>> {
     const mealAddon = await this.addonRepository
       .query()
-      .where('brandId', brandId);
+      .where('brandId', brandId)
+      .page(pageDto.pageNumber, pageDto.pageSize);
 
+    const pageMetaDto = new PageMetaDTO({
+      page: pageDto.pageNumber + 1,
+      pageSize: pageDto.pageSize,
+      currentPageItems: mealAddon.results.length,
+      totalItems: mealAddon.total,
+    });
     return new ResponseModel(
       HttpStatus.OK,
       'successfully fetched meal addons',
-      mealAddon,
+      mealAddon.results,
+      pageMetaDto,
     );
   }
 
-  async findMealAddonsByIdAndBrandId(params: ParamDto): Promise<ResponseModel<Addon>> {
+  async findMealAddonsByIdAndBrandId(
+    params: ParamDto,
+  ): Promise<ResponseModel<Addon>> {
     const [mealAddon] = await this.addonRepository
       .query()
       .where('id', params.addonId)
@@ -128,13 +141,25 @@ export class AddonsService {
     );
   }
 
-  async findAllMealAddonCategories(): Promise<ResponseModel<AddonCategory[]>> {
-    const mealAddonCategories = await this.addonCategoryRepository.query();
+  async findAllMealAddonCategories(
+    pageDto: PageDto,
+  ): Promise<ResponseModel<AddonCategory[]>> {
+    const mealAddonCategories = await this.addonCategoryRepository
+      .query()
+      .page(pageDto.pageNumber, pageDto.pageSize);
+
+    const pageMetaDto = new PageMetaDTO({
+      page: pageDto.pageNumber + 1,
+      pageSize: pageDto.pageSize,
+      currentPageItems: mealAddonCategories.results.length,
+      totalItems: mealAddonCategories.total,
+    });
 
     return new ResponseModel(
       HttpStatus.CREATED,
       'successfully fetched all meal addon categories',
-      mealAddonCategories,
+      mealAddonCategories.results,
+      pageMetaDto,
     );
   }
 

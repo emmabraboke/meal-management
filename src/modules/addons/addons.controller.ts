@@ -6,8 +6,10 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
+import { PageDto } from '../../dtos/pagination/page.dto';
 import { AdminGuard } from '../../guards/admin.guard';
 import { AddonsService } from './addons.service';
 import { CreateAddonDto } from './dtos/createAddon.dto';
@@ -29,13 +31,16 @@ export class AddonsController {
   }
 
   @Get('/addons/addon-categories')
-  async findAllMealAddonCategories() {
-    return await this.addonsService.findAllMealAddonCategories();
+  async findAllMealAddonCategories(@Query() pageDto: PageDto,) {
+    return await this.addonsService.findAllMealAddonCategories(pageDto);
   }
 
   @Get('/:brandId/addons')
-  async findMealAddonsByBrandId(@Param('brandId') brandId: string) {
-    return await this.addonsService.findMealAddonsByBrandId(brandId);
+  async findMealAddonsByBrandId(
+    @Param('brandId') brandId: string,
+    @Query() pageDto: PageDto,
+  ) {
+    return await this.addonsService.findMealAddonsByBrandId(brandId, pageDto);
   }
 
   @Get('/:brandId/addons/:addonId')

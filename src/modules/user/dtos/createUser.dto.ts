@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   IsEmail,
   IsEnum,
@@ -5,7 +6,7 @@ import {
   IsOptional,
   MinLength,
 } from 'class-validator';
-import { Role } from '../../../enum/user/role.enum';
+import { Role } from '../../../enum/role.enum';
 
 export class CreateUserDto {
   @IsNotEmpty()

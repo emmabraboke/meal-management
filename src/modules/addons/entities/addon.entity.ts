@@ -1,6 +1,5 @@
 import { Model } from 'objection';
 
-
 export class Addon extends Model {
   static tableName = 'addons';
   readonly id: string;
@@ -8,6 +7,5 @@ export class Addon extends Model {
   description: string;
   price: number;
   category: string;
-  brandId: string
+  brandId: string;
 }
-

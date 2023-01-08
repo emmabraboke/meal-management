@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, SerializeOptions } from '@nestjs/common';
-import { Serialize } from 'src/interceptors/serialize.unterceptor';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { LoginDto } from './dtos/login.dto';
 import { UserDto } from './dtos/user.dto';
@@ -16,6 +16,7 @@ export class UserController {
   }
 
   @Post('/login')
+  @Serialize(UserDto)
   async login(@Body() loginDto: LoginDto) {
     return await this.userService.login(loginDto);
   }

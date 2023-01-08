@@ -1,13 +1,16 @@
-import { HttpStatus } from "@nestjs/common";
+import { HttpStatus } from '@nestjs/common';
+import { PageMetaDTO } from 'src/dtos/pagination/pageMeta.dto';
 
 export class ResponseModel<T> {
   statusCode: HttpStatus;
   message: string;
   data: T;
+  pagination: PageMetaDTO
 
-  constructor(statusCode: HttpStatus, message: string, data: T) {
+  constructor(statusCode: HttpStatus, message: string, data: T, pagination?: PageMetaDTO) {
     this.statusCode = statusCode;
     this.message = message;
     this.data = data;
+    this.pagination = pagination
   }
 }

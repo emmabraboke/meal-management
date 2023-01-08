@@ -1,14 +1,23 @@
-import {
-    IsEmail,
-    IsEnum,
-    IsNotEmpty,
-    IsOptional,
-    MinLength,
-  } from 'class-validator';
-  import { Role } from '../../../enum/user/role.enum';
-  
-  export class UserDto {
-    @IsNotEmpty()
-    password: string
-  }
-  
+import { Expose } from 'class-transformer';
+
+import { Role } from '../../../enum/role.enum';
+
+export class UserDto {
+  @Expose()
+  firstName: string;
+
+  @Expose()
+  lastName: string;
+
+  @Expose()
+  email: string;
+
+  @Expose()
+  role: Role;
+
+  @Expose()
+  refreshToken: string;
+
+  @Expose()
+  accessToken: string;
+}

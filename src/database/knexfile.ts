@@ -1,17 +1,18 @@
 // Update with your config settings.
 import { knexSnakeCaseMappers } from 'objection';
+import {ConfigService} from '@nestjs/config';
+import { databaseConfig } from 'src/config/database.config';
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+
+
+
 module.exports = {
   development: {
-    client: 'postgresql',
-    connection: {
-      database: 'meal',
-      user: 'postgres',
-      password: '12345',
-    },
+    client: databaseConfig.client,
+    connection: databaseConfig.connection,
     pool: {
       min: 2,
       max: 10,

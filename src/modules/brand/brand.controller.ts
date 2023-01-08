@@ -1,6 +1,9 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { CurrentUser } from 'src/decorators/user.decorator';
+import { PageDto } from 'src/dtos/pagination/page.dto';
 import { AdminGuard } from 'src/guards/admin.guard';
 import { AuthGuard } from 'src/guards/auth.guard';
+import { User } from '../user/entities/user.entity';
 import { BrandService } from './brand.service';
 import { CreateBrandDto } from './dtos/createbrand.dto';
 
@@ -11,13 +14,16 @@ export class BrandController {
 
   @Post()
   @UseGuards(AdminGuard)
-  async createBrand(@Body() createBrandDto: CreateBrandDto) {
-    return await this.brandService.createBrand(createBrandDto);
+  async createBrand(
+    @Body() createBrandDto: CreateBrandDto,
+    @CurrentUser() user: User,
+  ) {
+    return await this.brandService.createBrand(createBrandDto, user);
   }
 
   @Get()
   @UseGuards(AuthGuard)
-  async findAllBrands(){
-    return await this.brandService.findAllBrands()
+  async findAllBrands(@Query() pageDto: PageDto) {
+    return await this.brandService.findAllBrands(pageDto);
   }
 }

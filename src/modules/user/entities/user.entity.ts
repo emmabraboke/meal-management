@@ -1,5 +1,5 @@
 import { Model } from 'objection';
-import { Role } from '../../../enum/user/role.enum';
+import { Role } from '../../../enum/role.enum';
 
 export class User extends Model {
   static tableName = 'users';

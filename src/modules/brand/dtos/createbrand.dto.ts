@@ -1,9 +1,9 @@
-import { IsNotEmpty, IsOptional } from "class-validator";
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
-export class CreateBrandDto{
-    @IsNotEmpty()
-    name: string
+export class CreateBrandDto {
+  @IsNotEmpty()
+  name: string;
 
-    @IsOptional()
-    userId: string
+  @IsOptional()
+  userId: string;
 }

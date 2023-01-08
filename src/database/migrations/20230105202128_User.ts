@@ -1,5 +1,5 @@
 import { Knex } from 'knex';
-import { Role } from '../../enum/user/role.enum';
+import { Role } from '../../enum/role.enum';
 
 const tableName = 'users';
 export async function up(knex: Knex): Promise<void> {

@@ -1,10 +1,9 @@
-import { IsNotEmpty, IsOptional } from "class-validator"
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class ParamDto {
+  @IsOptional()
+  brandId: string;
 
-@IsOptional()
-brandId: string
-
-@IsOptional()
-addonId: string
+  @IsOptional()
+  addonId: string;
 }

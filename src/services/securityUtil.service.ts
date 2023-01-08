@@ -13,14 +13,10 @@ import { JwtPayload } from 'jsonwebtoken';
 export class SecurityUtilService {
   constructor(private configService: ConfigService) {}
   async encryptPassword(password: string) {
-    try {
-      const salt = await bcrypt.genSalt(10);
-      const encryptedPassword = await bcrypt.hash(password, salt);
+    const salt = await bcrypt.genSalt();
+    const encryptedPassword = await bcrypt.hash(password, salt);
 
-      return encryptedPassword;
-    } catch (error) {
-      console.log(error);
-    }
+    return encryptedPassword;
   }
 
   async verifyPassword(user: User, password: string) {
@@ -36,7 +32,7 @@ export class SecurityUtilService {
         );
       }
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
 
@@ -60,12 +56,6 @@ export class SecurityUtilService {
   }
 
   validateToken(token: any) {
-    try {
-      return jwt.verify(token, this.configService.get('app.secret'));
-    } catch (error) {
-      throw new UnprocessableEntityException(
-        'Invalid or expired token provided.',
-      );
-    }
+    return jwt.verify(token, this.configService.get('app.secret'));
   }
 }
