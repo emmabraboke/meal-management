@@ -13,7 +13,7 @@ Documentation - http://localhost:3000/documentation
 Before starting, make sure you have at least those components on your workstation:
 
 - An up-to-date release of [NodeJS](https://nodejs.org/) and NPM
-- A database (PostgreSQL). You may use the provided `docker-compose` file.
+- A database (PostgreSQL).
 
 ### 1.3 Project configuration
 
@@ -45,11 +45,11 @@ Set the `JWT_SECRET` and `JWT_EXPIRES_IN` to sign the JWT tokens.
 You are now ready to launch the NestJS application using the command below.
 
 ```sh
-# Perform migrations in your database using Knex.js
-npm run migration
+# Perform migrations in your database using KnexJS
+$ npm run migration
 
-# Launch the development server
-npm run start
+# development
+$ npm run start
 
 # watch mode
 $ npm run start:dev
@@ -101,22 +101,22 @@ src/
 
 ```sh
 # development
-npm run start
+$ npm run start
 
 # watch mode
-npm run start:dev
+$ npm run start:dev
 
 # Lint the project files using TSLint
-npm run lint
+$ npm run lint
 
 # Format document
-npm run format
+$ npm run format
 
 # Run the migrations
-npm run migration
+$ npm run migration
 
 # Revert the migrations
-npm run migration:down
+$ npm run migration:down
 ```
 
 ## 4. Technologies/Tools
