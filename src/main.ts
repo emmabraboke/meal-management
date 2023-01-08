@@ -2,7 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { AllExceptionsFilter } from './filters/exception.filter';
+import { AllExceptionsFilter } from './common/filters/exception.filter';
+import { swagger } from './swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -23,6 +24,7 @@ async function bootstrap() {
     methods: ['POST', 'PUT', 'DELETE', 'GET', 'PATCH'],
   });
 
+  swagger(app);
   await app.listen(port, () => console.log(`app is running on port ${port}`));
 }
 

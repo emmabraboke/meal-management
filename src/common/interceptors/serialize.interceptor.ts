@@ -7,14 +7,11 @@ import {
 import { plainToInstance } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ResponseModel } from 'src/utils/response.model';
-
-
+import { ResponseModel } from '../model/response.model';
 
 interface ClassConstructor {
   new (...args: any[]): {};
 }
-
 
 /**
  * This serialize data returned. its takes in a DTO as parameter, and exclude any field that is not exposed in the dto

@@ -6,8 +6,8 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { ModelClass } from 'objection';
-import { SecurityUtilService } from 'src/services/securityUtil.service';
-import { ResponseModel } from 'src/utils/response.model';
+import { SecurityUtilService } from '../../services/securityUtil.service';
+import { ResponseModel } from '../../common/model/response.model';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { LoginDto } from './dtos/login.dto';
 import { User } from './entities/user.entity';

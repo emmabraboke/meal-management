@@ -11,7 +11,8 @@ import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import appConfig from './config/app.config';
 import { SecurityUtilService } from './services/securityUtil.service';
-import { AuthMiddleware } from './middlewares/auth.middleware';
+import { AuthMiddleware } from './common/middlewares/auth.middleware';
+import { BrandService } from './modules/brand/brand.service';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
     }),
   ],
   controllers: [],
-  providers: [SecurityUtilService],
+  providers: [SecurityUtilService, BrandService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

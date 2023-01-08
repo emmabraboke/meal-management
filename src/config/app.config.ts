@@ -10,5 +10,5 @@ export default registerAs('app', () => ({
     user: process.env.USER,
     password: process.env.PASSWORD,
   },
-  client: process.env.CLIENT
+  client: process.env.CLIENT,
 }));

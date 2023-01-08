@@ -6,14 +6,14 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ModelClass, Page } from 'objection';
-import { PageDto } from 'src/dtos/pagination/page.dto';
-import { PageMetaDTO } from 'src/dtos/pagination/pageMeta.dto';
-import { ResponseModel } from 'src/utils/response.model';
+import { PageDto } from '../../common/dtos/page.dto';
+import { PageMetaDTO } from '../../common/dtos/pageMeta.dto';
+import { ResponseModel } from '../../common/model/response.model';
 import { CreateAddonDto } from './dtos/createAddon.dto';
 import { CreateAddonCategoryDto } from './dtos/createAddonCategory.dto';
 import { ParamDto } from './dtos/param.dto';
 import { UpdateAddon } from './dtos/updateAddon.dto';
-import { AddonCategory } from './entities/addon-category.entity';
+import { AddonCategory } from './entities/addonCategory.entity';
 import { Addon } from './entities/addon.entity';
 
 @Injectable()

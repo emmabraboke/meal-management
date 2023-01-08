@@ -1,19 +1,14 @@
 import { Optional } from '@nestjs/common';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import {
-  IsDateString,
-  IsEnum,
-  IsInt,
-  IsOptional,
-  Max,
-  Min,
-} from 'class-validator';
+import { IsInt, IsOptional, Max, Min } from 'class-validator';
 
 export class PageDto {
   @Type(() => Number)
   @IsInt()
   @Min(1)
   @IsOptional()
+  @ApiPropertyOptional()
   page?: number = 1;
 
   @Type(() => Number)
@@ -21,6 +16,7 @@ export class PageDto {
   @Min(1)
   @Max(30)
   @IsOptional()
+  @ApiPropertyOptional()
   pageSize?: number = 20;
 
   get pageNumber(): number {

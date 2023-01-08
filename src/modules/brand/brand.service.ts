@@ -4,11 +4,10 @@ import {
   Inject,
   Injectable,
 } from '@nestjs/common';
-import { ModelClass, raw } from 'objection';
-import { PageDto } from 'src/dtos/pagination/page.dto';
-import { PageMetaDTO } from 'src/dtos/pagination/pageMeta.dto';
-import { ResponseModel } from 'src/utils/response.model';
-import { User } from '../user/entities/user.entity';
+import { ModelClass } from 'objection';
+import { PageDto } from '../../common/dtos/page.dto';
+import { PageMetaDTO } from '../../common/dtos/pageMeta.dto';
+import { ResponseModel } from '../../common/model/response.model';
 import { CreateBrandDto } from './dtos/createbrand.dto';
 import { Brand } from './entities/brand.entity';
 
@@ -18,9 +17,9 @@ export class BrandService {
 
   async createBrand(
     createBrandDto: CreateBrandDto,
-    user: User,
+    userId: string,
   ): Promise<ResponseModel<Brand>> {
-    createBrandDto.userId = user.id;
+    createBrandDto.userId = userId;
     const brandExist = await this.findBrandByName(createBrandDto.name);
 
     if (brandExist) {
@@ -40,7 +39,6 @@ export class BrandService {
     const brands = await this.brandRepository
       .query()
       .page(pageDto.pageNumber, pageDto.pageSize);
-      
 
     const pageMetaDto = new PageMetaDTO({
       page: pageDto.pageNumber + 1,

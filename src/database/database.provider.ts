@@ -1,10 +1,10 @@
 import { User } from '../modules/user/entities/user.entity';
 import { Brand } from '../modules/brand/entities/brand.entity';
 import { Addon } from '../modules/addons/entities/addon.entity';
-import { AddonCategory } from '../modules/addons/entities/addon-category.entity';
+import { AddonCategory } from '../modules/addons/entities/addonCategory.entity';
 import { knexSnakeCaseMappers, Model } from 'objection';
 import { knex } from 'knex';
-import { databaseConfig } from 'src/config/database.config';
+import { ConfigService } from '@nestjs/config';
 
 const models = [User, Brand, Addon, AddonCategory];
 
@@ -19,10 +19,10 @@ export const providers = [
   ...modelProviders,
   {
     provide: 'KnexConnection',
-    useFactory: async () => {
+    useFactory: async (configService: ConfigService) => {
       const Knex = knex({
-        client: databaseConfig.client,
-        connection: databaseConfig.connection,
+        client: configService.get('app.client'),
+        connection: configService.get('app.connection'),
         debug: process.env.KNEX_DEBUG === 'true',
         ...knexSnakeCaseMappers,
       });
@@ -30,5 +30,6 @@ export const providers = [
       Model.knex(Knex);
       return Knex;
     },
+    inject: [ConfigService],
   },
 ];

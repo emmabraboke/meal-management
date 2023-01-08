@@ -1,13 +1,10 @@
 // Update with your config settings.
 import { knexSnakeCaseMappers } from 'objection';
-import {ConfigService} from '@nestjs/config';
 import { databaseConfig } from 'src/config/database.config';
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
-
-
 
 module.exports = {
   development: {

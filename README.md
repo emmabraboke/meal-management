@@ -1,73 +1,127 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Meal management API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 1. Getting started
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Meal management application allows users to create, read, update, and delete meal addons.It also allow users to create categories for these addons.
 
-## Description
+### 1.1 View Documentation
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Documentation - http://localhost:3000/documentation
 
-## Installation
+### 1.2 Requirements
 
-```bash
-$ npm install
+Before starting, make sure you have at least those components on your workstation:
+
+- An up-to-date release of [NodeJS](https://nodejs.org/) and NPM
+- A database (PostgreSQL). You may use the provided `docker-compose` file.
+
+### 1.3 Project configuration
+
+Start by cloning this project on your workstation.
+
+```sh
+git clone https://github.com/emmabraboke/meal-management.git my-project
 ```
 
-## Running the app
+The next thing will be to install all the dependencies of the project.
 
-```bash
-# development
-$ npm run start
+```sh
+cd ./my-project
+npm install
+```
+
+Once the dependencies are installed, you can now configure your project by creating a new `.env` file containing your environment variables used for development.
+
+```
+cp .env.example .env
+vi .env
+```
+
+For Objectionjs configuration: change everything according to your own database setup.
+Set the `JWT_SECRET` and `JWT_EXPIRES_IN` to sign the JWT tokens.
+
+### 1.4 Running the app
+
+You are now ready to launch the NestJS application using the command below.
+
+```sh
+# Perform migrations in your database using Knex.js
+npm run migration
+
+# Launch the development server
+npm run start
 
 # watch mode
 $ npm run start:dev
 
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+You can now head to `http://localhost:3000/documentation` and see your API Swagger docs.
 
-```bash
-# unit tests
-$ npm run test
+## 2. Project structure
 
-# e2e tests
-$ npm run test:e2e
+This template was made with a well-defined directory structure.
 
-# test coverage
-$ npm run test:cov
+```sh
+src/
+├── common/  # The common module contains pipes, guards, service and provider used in the whole application
+├── config/ # config contains the all app configs
+├── database # database contains the migrations, seeds and database setup
+├── modules
+│   ├── addon
+│   │   ├── dto # contains the addons dto
+│   │   ├── entities/
+│   │   │   ├── addonCategory.entity.ts # Thee meal addon category model
+│   │   │   ├── addon.entity.ts # The meal addon model
+│   │   ├── addons.controller.ts
+│   │   ├── addons.module.ts
+│   │   ├── addons.service.ts
+│   ├── brand
+│   │   ├── dto # contains the brand dto
+│   │   ├── entities/
+│   │   │   ├── brand.entity.ts # The brand model
+│   │   ├── brand.controller.ts
+│   │   ├── brand.module.ts
+│   │   ├── brand.service.ts
+│   ├── user
+│   │   ├── dto # contains the brand dto
+│   │   ├── entities/
+│   │   │   ├── user.entity.ts # The user model
+│   │   ├── user.controller.ts
+│   │   ├── user.module.ts
+│   │   ├── user.service.ts
+├── services/
+│    ├── securityUtil.service.ts # This service contain methods used hashing and verifying password,creating and validating tokens
+├── app.module.ts 
+├── swagger.ts
+└── main.ts
 ```
 
-## Support
+## 3. Some NPM commands
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```sh
+# development
+npm run start
 
-## Stay in touch
+# watch mode
+npm run start:dev
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# Lint the project files using TSLint
+npm run lint
 
-## License
+# Format document
+npm run format
 
-Nest is [MIT licensed](LICENSE).
+# Run the migrations
+npm run migration
+
+# Revert the migrations
+npm run migration:down
+```
+
+## 4. Technologies/Tools
+
+- NestJS
+- ObjectionJs
+- KnexJs
+- TypeScript
