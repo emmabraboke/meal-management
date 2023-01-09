@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 import { ResponseModel } from '../model/response.model';
 
 interface ClassConstructor {
-  new (...args: any[]): {};
+  new (...args: any[]);
 }
 
 /**
