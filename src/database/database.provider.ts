@@ -14,7 +14,7 @@ const modelProviders = models.map((model) => {
     useValue: model,
   };
 });
-console.log();
+
 export const providers = [
   ...modelProviders,
   {

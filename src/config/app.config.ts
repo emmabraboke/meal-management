@@ -6,7 +6,10 @@ export default registerAs('app', () => ({
   swaggerBasePath: process.env.SWAGGER_BASE_PATH,
   accessTokenExpiresIn: Number(process.env.JWT_EXPIRES_IN),
   refreshTokenExpiresIn: 30 * Number(process.env.JWT_EXPIRES_IN),
-  connection: process.env.DATABASE_URL || {
+  connection: {
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+  } || {
     database: process.env.DATABASE,
     user: process.env.USER,
     password: process.env.PASSWORD,
