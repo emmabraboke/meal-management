@@ -6,8 +6,8 @@ Meal management application allows users to create, read, update, and delete mea
 
 ### 1.1 View Application and Documentation
 
-Application live url - https://meal-management.onrender.com
-Documentation - https://meal-management.onrender.com/documentation
+- Application live url - https://meal-management.onrender.com
+- Documentation - https://meal-management.onrender.com/documentation
 
 ### 1.2 Requirements
 
