@@ -4,8 +4,9 @@
 
 Meal management application allows users to create, read, update, and delete meal addons.It also allow users to create categories for these addons.
 
-### 1.1 View Documentation
+### 1.1 View Application and Documentation
 
+Application live url - https://meal-management.onrender.com
 Documentation - https://meal-management.onrender.com/documentation
 
 ### 1.2 Requirements
