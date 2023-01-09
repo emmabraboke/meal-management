@@ -1,14 +1,6 @@
-import {
-  ArgumentsHost,
-  BadRequestException,
-  Catch,
-  HttpStatus,
-  Logger,
-  UnprocessableEntityException,
-} from '@nestjs/common';
+import { ArgumentsHost, Catch, HttpStatus, Logger } from '@nestjs/common';
 import { BaseExceptionFilter, HttpAdapterHost } from '@nestjs/core';
 import { JsonWebTokenError } from 'jsonwebtoken';
-import { ValidationError } from 'class-validator';
 
 @Catch()
 export class AllExceptionsFilter extends BaseExceptionFilter {

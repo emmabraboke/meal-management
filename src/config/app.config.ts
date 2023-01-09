@@ -5,7 +5,7 @@ export default registerAs('app', () => ({
   secret: process.env.JWT_SECRET,
   accessTokenExpiresIn: Number(process.env.JWT_EXPIRES_IN),
   refreshTokenExpiresIn: 30 * Number(process.env.JWT_EXPIRES_IN),
-  connection: {
+  connection: process.env.DATABASE_URL || {
     database: process.env.DATABASE,
     user: process.env.USER,
     password: process.env.PASSWORD,

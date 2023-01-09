@@ -4,9 +4,9 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import { SecurityUtilService } from 'src/services/securityUtil.service';
-import { UserService } from 'src/modules/user/user.service';
-import { User } from 'src/modules/user/entities/user.entity';
+import { SecurityUtilService } from '../../services/securityUtil.service';
+import { UserService } from '../../modules/user/user.service';
+import { User } from '../../modules/user/entities/user.entity';
 
 declare global {
   namespace Express {

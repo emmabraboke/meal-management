@@ -5,7 +5,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { ModelClass, Page } from 'objection';
+import { ModelClass } from 'objection';
 import { PageDto } from '../../common/dtos/page.dto';
 import { PageMetaDTO } from '../../common/dtos/pageMeta.dto';
 import { ResponseModel } from '../../common/model/response.model';

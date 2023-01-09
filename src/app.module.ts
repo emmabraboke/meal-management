@@ -13,6 +13,7 @@ import appConfig from './config/app.config';
 import { SecurityUtilService } from './services/securityUtil.service';
 import { AuthMiddleware } from './common/middlewares/auth.middleware';
 import { BrandService } from './modules/brand/brand.service';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { BrandService } from './modules/brand/brand.service';
       isGlobal: true,
     }),
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [SecurityUtilService, BrandService],
 })
 export class AppModule implements NestModule {
@@ -33,6 +34,10 @@ export class AppModule implements NestModule {
     consumer
       .apply(AuthMiddleware)
       .exclude(
+        {
+          path: '/',
+          method: RequestMethod.ALL,
+        },
         {
           path: 'user',
           method: RequestMethod.ALL,

@@ -1,12 +1,5 @@
 import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
-import {
-  ApiBearerAuth,
-  ApiCreatedResponse,
-  ApiOkResponse,
-  ApiOperation,
-  ApiTags,
-  ApiUnauthorizedResponse,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SwaggerConstant } from '../../common/constants/swagger.constant';
 import { CurrentUser } from '../../common/decorators/user.decorator';
 import { PageDto } from '../../common/dtos/page.dto';

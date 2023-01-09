@@ -1,7 +1,5 @@
-// import { PartialType } from '@nestjs/mapped-types';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsOptional } from 'class-validator';
-import { CreateAddonDto } from './createAddon.dto';
 
 export class UpdateAddon {
   @IsOptional()
