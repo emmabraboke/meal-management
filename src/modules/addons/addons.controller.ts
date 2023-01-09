@@ -10,7 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { SwaggerConstant } from 'src/common/constants/swagger.constant';
+import { SwaggerConstant } from '../../common/constants/swagger.constant';
 import { PageDto } from '../../common/dtos/page.dto';
 import { AdminGuard } from '../../common/guards/admin.guard';
 import { AddonsService } from './addons.service';

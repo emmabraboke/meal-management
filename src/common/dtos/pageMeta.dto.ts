@@ -1,4 +1,4 @@
-import { IPageMetaDTO } from 'src/common/interfaces/page.interface';
+import { IPageMetaDTO } from '../../common/interfaces/page.interface';
 
 export class PageMetaDTO {
   currentPage: number;

@@ -6,7 +6,7 @@ Meal management application allows users to create, read, update, and delete mea
 
 ### 1.1 View Documentation
 
-Documentation - http://localhost:3000/documentation
+Documentation - https://meal-management.onrender.com/documentation
 
 ### 1.2 Requirements
 

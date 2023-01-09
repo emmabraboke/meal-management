@@ -5,9 +5,8 @@ import {
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import { User } from 'src/modules/user/entities/user.entity';
+import { User } from '../modules/user/entities/user.entity';
 import { ConfigService } from '@nestjs/config';
-import { JwtPayload } from 'jsonwebtoken';
 
 @Injectable()
 export class SecurityUtilService {
