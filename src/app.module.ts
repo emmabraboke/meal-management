@@ -11,9 +11,9 @@ import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import appConfig from './config/app.config';
 import { SecurityUtilService } from './services/securityUtil.service';
-import { AuthMiddleware } from './common/middlewares/auth.middleware';
-import { BrandService } from './modules/brand/brand.service';
 import { AppController } from './app.controller';
+import { BrandService } from './modules/brand/brand.service';
+import { AuthMiddleware } from './common/middlewares/auth.middleware';
 
 @Module({
   imports: [

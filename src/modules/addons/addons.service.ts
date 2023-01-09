@@ -69,6 +69,9 @@ export class AddonsService {
       .where('id', params.addonId)
       .where('brandId', params.brandId);
 
+    if (!mealAddon) {
+      throw new NotFoundException('meal addons not found');
+    }
     return new ResponseModel(
       HttpStatus.OK,
       'successfully fetched meal addons',

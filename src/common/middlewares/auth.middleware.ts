@@ -9,6 +9,7 @@ import { UserService } from '../../modules/user/user.service';
 import { User } from '../../modules/user/entities/user.entity';
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface Request {
       user?: User;
@@ -20,7 +21,7 @@ declare global {
 export class AuthMiddleware implements NestMiddleware {
   constructor(
     private securityUtilService: SecurityUtilService,
-    private UserService: UserService,
+    private userService: UserService,
   ) {}
 
   async use(req: Request, res: Response, next: NextFunction) {
@@ -37,7 +38,7 @@ export class AuthMiddleware implements NestMiddleware {
 
     const claims = this.securityUtilService.validateToken(token);
 
-    const user = await this.UserService.findUserById(claims['id']);
+    const user = await this.userService.findUserById(claims['id']);
 
     // GRANT ACCESS TO PROTECTED ROUTE
     req.user = user;

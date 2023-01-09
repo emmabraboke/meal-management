@@ -16,7 +16,7 @@ export class AllExceptionsFilter extends BaseExceptionFilter {
     const response = ctx.getResponse();
 
     let statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-    let data = null;
+    const data = null;
     let message =
       exception?.message ||
       exception?.response?.message ||
@@ -25,6 +25,11 @@ export class AllExceptionsFilter extends BaseExceptionFilter {
     if (exception?.nativeError?.code === '22P02') {
       statusCode = HttpStatus.BAD_REQUEST;
       message = `${exception.name}: invalid input syntax`;
+    }
+
+    if (exception?.nativeError?.code === '23503') {
+      statusCode = HttpStatus.BAD_REQUEST;
+      message = exception.nativeError.detail;
     }
 
     if (exception instanceof JsonWebTokenError) {
